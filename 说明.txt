@@ -1,0 +1,6 @@
+m_pDeviceList = usb_relay_device_enumerate();查找设备
+usb_relay_device_open打开设备
+usb_relay_device_get_status获取状态
+usb_relay_device_close
+usb_relay_device_open_one_relay_channel
+usb_relay_device_close_one_relay_channel
