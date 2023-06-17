@@ -1,6 +1,10 @@
 ﻿# cmake最低要求
 cmake_minimum_required( VERSION 3.18 )
 
+if(POLICY CMP0091)
+	cmake_policy(SET CMP0091 NEW)
+endif(POLICY CMP0091)
+
 # 声明一个项目
 project(USBRelay)
 
@@ -25,12 +29,15 @@ link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 
 # 添加可执行文件，注意添加WIN32，否则有一个控制台黑框
-add_executable(USBDelay
+add_executable(USBRelay
 ${SOURCES}
 )
 
+set_property(TARGET USBRelay PROPERTY
+			MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
 # 链接库
-target_link_libraries(USBDelay usb_relay_device)
+target_link_libraries(USBRelay usb_relay_device)
 
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
